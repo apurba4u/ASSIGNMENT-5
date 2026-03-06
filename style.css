@@ -1,0 +1,8 @@
+@import "tailwindcss";
+* {
+  font-family: "Geist", sans-serif;
+}
+input::placeholder {
+  color: #64748B;
+  padding-left: 15px;
+}
