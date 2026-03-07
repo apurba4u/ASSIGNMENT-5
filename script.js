@@ -1,7 +1,6 @@
 document.querySelector('#login-btn').addEventListener('click', () => {
   const usr = getValue('input-user')
   const pass = getValue('input-pass')
-  console.log(`${usr} ${pass}`);
 
   if (usr == 'admin' && pass == 'admin123') {
     window.location.assign('./home.html')
@@ -27,3 +26,4 @@ function showOnly(id) {
   arr.forEach(elem => elem.classList.add('hidden'))
   selected.classList.remove('hidden')
 }
+
