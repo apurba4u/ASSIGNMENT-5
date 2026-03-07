@@ -45,9 +45,9 @@
   <!-- Button Section -->
   <section class="max-w-[1110px] bg-white mt-15 mb-4 mx-auto">
     <div class="p-6 flex gap-2">
-      <button class="btn text-[#64748B]">All</button>
-      <button class="btn text-[#64748B]">Open</button>
-      <button class="btn text-[#64748B]">Closed</button>
+      <button onclick="showOnly('all')" id="btn1" class="btn text-[#64748B]">All</button>
+      <button onclick="showOnly('open')" id="btn2" class="btn text-[#64748B]">Open</button>
+      <button onclick="showOnly('closed')" id="btn2" class="btn text-[#64748B]">Closed</button>
     </div>
   </section>
   <!-- Indicator section -->
@@ -73,7 +73,7 @@
     </div>
   </section>
 
-  <section class="max-w-[1110px] m-5 mx-auto grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2">
+  <section id="all" class="max-w-[1110px] m-5 mx-auto grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2">
     <div class="bg-white w-64 h-64 p-4 space-y-3 border-t-3 rounded-2xl border-t-[#00A86E]">
       <div class="flex justify-between">
         <img src="./assets/Open-Status.png" alt="">
@@ -622,6 +622,12 @@
     </div>
   </section>
 
+  <section id="open" class="max-w-[1110px] m-5 mx-auto grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 hidden">
+    <h1 class="text-2xl font-bold">Open</h1>
+  </section>
+  <section id="closed" class="max-w-[1110px] m-5 mx-auto grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 hidden">
+    <h1 class="text-2xl font-bold">Closed</h1>
+  </section>
   <script src="./script.js"></script>
 </body>
 </html>

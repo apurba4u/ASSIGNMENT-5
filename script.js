@@ -16,3 +16,14 @@ const getValue = (id) => {
   return result.value
 }
 
+function showOnly(id) {
+  const selected = document.querySelector(`#${id}`)
+  const all = document.querySelector('#all')
+  const open = document.querySelector('#open')
+  const closed = document.querySelector('#closed')
+
+  const arr = [all, open, closed]
+
+  arr.forEach(elem => elem.classList.add('hidden'))
+  selected.classList.remove('hidden')
+}
