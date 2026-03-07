@@ -2,7 +2,14 @@
 * {
   font-family: "Geist", sans-serif;
 }
+html {
+  background-color: #F8FAFC;
+}
 input::placeholder {
   color: #64748B;
   padding-left: 15px;
+}
+.active {
+  background-color: #4A00FF;
+  color: white;
 }
