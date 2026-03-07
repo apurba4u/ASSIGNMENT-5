@@ -21,15 +21,15 @@
   <section class="max-w-[456px] mx-auto space-y-2 mb-8">
     <div class="space-y-1">
     <label for="" class="text-[18px] font-medium text-[#1F2937]">Username</label>
-    <input type="text" class="w-full h-12 border-[#E4E4E7] rounded-2xl" placeholder="Enter Username" required>
+    <input id="input-user" type="text" class="w-full h-12 border-[#E4E4E7] rounded-2xl" placeholder="Enter Username" required>
     <p class="text-[#4A00FF] text-[14px]">Default: admin</p>
     </div>
     <div class="space-y-1">
     <label for="" class="text-[18px] font-medium text-[#1F2937]">Password</label>
-    <input type="password" class="w-full h-12 border-[#E4E4E7] rounded-2xl" placeholder="Enter Password" required>
+    <input id="input-pass" type="text" class="w-full h-12 border-[#E4E4E7] rounded-2xl" placeholder="Enter Password" required>
     <p class="text-[#4A00FF] text-[14px]">Default: admin123</p>
     </div>
-    <button class="btn btn-primary w-full rounded-2xl">Sign In</button>
+    <button id="login-btn" class="btn btn-primary w-full rounded-2xl">Sign In</button>
   </section>
   <section class="max-w-[456px] mx-auto">
     <div class="flex justify-between items-center">
@@ -45,5 +45,7 @@
       <h3 class="font-semibold text-[#1F2937] ">Password: <span class="font-normal">admin123</span></h3>
     </div>
   </section>
+
+  <script src="./script.js"></script>
 </body>
 </html>
