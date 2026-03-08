@@ -1,3 +1,4 @@
+
 async function allIssues() {
   const url = 'https://phi-lab-server.vercel.app/api/v1/lab/issues'
 
@@ -161,7 +162,7 @@ const manageSpinner = (status) => {
   }
 }
 allIssues()
-
+console.log('connect 2');
 // good first issue
 // documentation
 // bug

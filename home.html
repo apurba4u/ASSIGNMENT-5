@@ -22,23 +22,9 @@
   <div class="flex gap-2">
     <div class="relative">
       <i class="ri-search-line text-gray-400 absolute z-10 p-2"></i>
-      <input type="text" placeholder="Search issues..." class="input input-bordered w-24 md:w-auto" />
+      <input id="input-btn" type="text" placeholder="Search issues..." class="input input-bordered w-24 md:w-auto" />
     </div>
-    <div class="dropdown dropdown-end">
-      <button class="btn btn-primary">+ New Issue</button>
-      <ul
-        tabindex="-1"
-        class="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
-        <li>
-          <a class="justify-between">
-            Profile
-            <span class="badge">New</span>
-          </a>
-        </li>
-        <li><a>Settings</a></li>
-        <li><a>Logout</a></li>
-      </ul>
-    </div>
+    <button id="search-btn" class="btn btn-primary">+ New Issue</button>
   </div>
   </div>
 
@@ -110,7 +96,7 @@
     </section>
     <section id="closed" class="max-w-[1110px] m-5 mx-auto grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 hidden">
     </section>
+    <script src="./machine.js"></script>
   <script src="./script.js"></script>
-  <script src="./machine.js"></script>
 </body>
 </html>
