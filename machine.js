@@ -1,8 +1,13 @@
-function allIssues() {
+async function allIssues() {
   const url = 'https://phi-lab-server.vercel.app/api/v1/lab/issues'
-  fetch(url)
-  .then(js => js.json())
-  .then(data => displayIssues(data.data))
+
+  const res = await fetch(url)
+  const data = await res.json()
+
+  pushIssues(data.data)
+  displayIssues(shobIssues, 'all')
+  displayIssues(openIssues, 'open')
+  displayIssues(closedIssues, 'closed')
 }
 let shobIssues = []
 let openIssues = []
@@ -21,12 +26,21 @@ let closedIssues = []
 //     "createdAt": "2024-01-26T10:45:00Z",
 //     "updatedAt": "2024-01-26T10:45:00Z"
 // }
-function displayIssues(issues) {
-  const all = document.querySelector('#all')
+function pushIssues (arr) {
+  arr.forEach((elem) => {
+    if (elem.status === 'open') {
+      openIssues.push(elem)
+    } else {
+      closedIssues.push(elem)
+    }
+    shobIssues.push(elem)
+  })
+}
+function displayIssues(issues,id) {
+  const all = document.querySelector(`#${id}`)
   all.innerHTML = ''
 
   issues.forEach((elm) => {
-
     const card = document.createElement('div')
     card.className = "bg-white w-64 h-64 p-4 space-y-3 rounded-2xl border-t-4"
 
@@ -129,6 +143,7 @@ function displayIssues(issues) {
 }
 
 allIssues()
+
 // good first issue
 // documentation
 // bug
