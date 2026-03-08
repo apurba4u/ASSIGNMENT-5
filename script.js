@@ -14,6 +14,10 @@ const getValue = (id) => {
   const result = document.querySelector(`#${id}`)
   return result.value
 }
+function removeActive() {
+  document.querySelectorAll('.sec-btn')
+    .forEach(btn => btn.classList.remove('active'))
+}
 
 function showOnly(id) {
   const selected = document.querySelector(`#${id}`)
@@ -25,6 +29,9 @@ function showOnly(id) {
 
   arr.forEach(elem => elem.classList.add('hidden'))
   selected.classList.remove('hidden')
-}
 
+  // active switch
+  removeActive()
+  document.querySelector(`#btn-${id}`).classList.add('active')
+}
 

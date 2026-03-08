@@ -8,6 +8,8 @@ async function allIssues() {
   displayIssues(shobIssues, 'all')
   displayIssues(openIssues, 'open')
   displayIssues(closedIssues, 'closed')
+
+  showOnly('all')
 }
 let shobIssues = []
 let openIssues = []
