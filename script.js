@@ -73,10 +73,13 @@ document.querySelectorAll(".sec-btn").forEach((btn) => {
 
     if (type === "all") {
       displayIssues(shobIssues, "all");
+      updateIssueCount(shobIssues.length)
     } else if (type === "open") {
       displayIssues(openIssues, "open");
+      updateIssueCount(openIssues.length)
     } else if (type === "closed") {
       displayIssues(closedIssues, "closed");
+      updateIssueCount(closedIssues.length)
     }
   });
 });

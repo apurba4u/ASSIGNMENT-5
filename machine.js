@@ -166,3 +166,8 @@ console.log('connect 2');
 // documentation
 // bug
 // good first issue
+
+function updateIssueCount(count) {
+  const counter = document.querySelector('#issue-count')
+  counter.textContent = `${count} Issues`
+}
