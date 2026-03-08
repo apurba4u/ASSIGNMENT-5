@@ -50,6 +50,10 @@
       <button onclick="showOnly('closed')" id="btn-closed" class="btn sec-btn text-[#64748B]" data-type="closed">Closed</button>
     </div>
   </section>
+  <!-- Spinner section -->
+  <section id="spinner" class="flex justify-center items-center py-10 hidden">
+      <span class="loading loading-spinner text-neutral"></span>
+    </section>
   <!-- Indicator section -->
   <section class="max-w-[1110px] bg-white m-4 mx-auto flex justify-between">
     <div class="p-6">
@@ -102,10 +106,10 @@
     </div> -->
     </section>
     
-  <section id="open" class="max-w-[1110px] m-5 mx-auto grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 hidden">
-  </section>
-  <section id="closed" class="max-w-[1110px] m-5 mx-auto grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 hidden">
-  </section>
+    <section id="open" class="max-w-[1110px] m-5 mx-auto grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 hidden">
+    </section>
+    <section id="closed" class="max-w-[1110px] m-5 mx-auto grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 hidden">
+    </section>
   <script src="./script.js"></script>
   <script src="./machine.js"></script>
 </body>

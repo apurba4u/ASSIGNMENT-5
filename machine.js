@@ -1,15 +1,25 @@
 async function allIssues() {
   const url = 'https://phi-lab-server.vercel.app/api/v1/lab/issues'
 
-  const res = await fetch(url)
-  const data = await res.json()
+  try {
+    manageSpinner(true)
 
-  pushIssues(data.data)
-  displayIssues(shobIssues, 'all')
-  displayIssues(openIssues, 'open')
-  displayIssues(closedIssues, 'closed')
+    const res = await fetch(url)
+    const data = await res.json()
 
-  showOnly('all')
+    pushIssues(data.data)
+
+    displayIssues(shobIssues, 'all')
+    displayIssues(openIssues, 'open')
+    displayIssues(closedIssues, 'closed')
+
+    showOnly('all')
+
+  } catch (error) {
+    console.error(error)
+  } finally {
+    manageSpinner(false)
+  }
 }
 let shobIssues = []
 let openIssues = []
@@ -41,7 +51,6 @@ function pushIssues (arr) {
 function displayIssues(issues,id) {
   const all = document.querySelector(`#${id}`)
   all.innerHTML = ''
-
   issues.forEach((elm) => {
     const card = document.createElement('div')
     card.className = "bg-white w-64 h-64 p-4 space-y-3 rounded-2xl border-t-4"
@@ -139,11 +148,18 @@ function displayIssues(issues,id) {
 
       labels.appendChild(button)
     })
-
     all.appendChild(card)
   })
 }
+const manageSpinner = (status) => {
+  const spinner = document.querySelector('#spinner')
 
+  if (status) {
+    spinner.classList.remove('hidden')
+  } else {
+    spinner.classList.add('hidden')
+  }
+}
 allIssues()
 
 // good first issue
