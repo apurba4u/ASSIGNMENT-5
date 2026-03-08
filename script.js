@@ -82,5 +82,63 @@ document.querySelectorAll('.sec-btn').forEach(btn => {
     }
   })
 })
-console.log('connet');
-
+async function loadDetails(id) {
+  const url = `https://phi-lab-server.vercel.app/api/v1/lab/issue/${id}`
+  const res = await fetch(url)
+  const details = await res.json()
+  loadDetailsProperly(details.data)
+}
+// {
+//     "id": 26,
+//     "title": "Session timeout too aggressive",
+//     "description": "Users are being logged out too frequently. Need to adjust session timeout settings.",
+//     "status": "closed",
+//     "labels": [
+//         "bug"
+//     ],
+//     "priority": "medium",
+//     "author": "session_steve",
+//     "assignee": "security_sam",
+//     "createdAt": "2024-01-09T11:00:00Z",
+//     "updatedAt": "2024-01-22T14:30:00Z"
+// }
+const loadDetailsProperly = (details) => {
+  const detailsBox = document.querySelector('#details-container')
+  console.log(details);
+  detailsBox.innerHTML = 
+  `
+  <section class="p-8 space-y-3.5">
+    <h1 class="font-bold text-[24px] text-[#1F2937]">${details.title}</h1>
+    <div class="flex items-center gap-1.5">
+      <div class="p-1.5 text-[12px] rounded-2xl ${details.status === 'open' ? 'bg-green-100 text-green-600' : 'bg-red-100 text-red-600'}">${details.status}</div>
+      <p class="text-[#64748B] text-[12px]">Opened by ${details.author}</p>
+      <p class="text-[#64748B] text-[12px]">${details.createdAt.slice(0,10)}</p>
+    </div>
+    <div class="flex items-center gap-1.5">
+      <button class="flex justify-center items-center rounded-xl p-1.5 text-[12px] font-medium bg-red-100 text-red-500">
+        <img src="./assets/icon1.png" alt="">
+        BUG
+      </button>
+      <button class="flex justify-center items-center rounded-xl p-1.5 text-[12px] font-medium bg-red-100 text-red-500">
+        <img src="./assets/icon2.png" alt="">
+        Help Wanted
+      </button>
+    </div>
+    <div>
+      <p class="text-[#64748B] text-[14px]">${details.description}</p>
+    </div>
+    <div class="bg-[#F8FAFC] p-4 flex justify-between">
+      <div class="flex flex-col gap-0.5">
+        <p class="text-[#64748B] text-[13px]">Assignee:</p>
+        <h4 class="font-semibold text-[#1F2937]">${details.author}</h4>
+      </div>
+      <div class="flex flex-col gap-0.5">
+        <p class="text-[#64748B] text-[13px]">Priority:</p>
+        <div class="p-1.5 text-[12px] bg-[#EF4444] rounded-2xl text-center ${details.priority === 'high' ? 'bg-red-100 text-red-700' : details.priority === 'medium'
+      ? 'bg-yellow-100 text-yellow-500' : 'bg-gray-300 text-gray-700'}">${details.priority}</div>
+      </div>
+    </div>
+  </section>
+  `
+  document.querySelector('#details_modal').showModal()
+}

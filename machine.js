@@ -1,4 +1,3 @@
-
 async function allIssues() {
   const url = 'https://phi-lab-server.vercel.app/api/v1/lab/issues'
 
@@ -63,7 +62,7 @@ function displayIssues(issues,id) {
     }
 
     card.innerHTML = `
-      <div>
+      <div onclick="loadDetails(${elm.id})">
         <div class="flex justify-between">
           <img src="./assets/Open-Status.png" alt="">
           <div class="w-20 h-6 rounded-2xl text-center priority">
