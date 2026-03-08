@@ -1,29 +1,28 @@
 async function allIssues() {
-  const url = 'https://phi-lab-server.vercel.app/api/v1/lab/issues'
+  const url = "https://phi-lab-server.vercel.app/api/v1/lab/issues";
 
   try {
-    manageSpinner(true)
+    manageSpinner(true);
 
-    const res = await fetch(url)
-    const data = await res.json()
+    const res = await fetch(url);
+    const data = await res.json();
 
-    pushIssues(data.data)
+    pushIssues(data.data);
 
-    displayIssues(shobIssues, 'all')
-    displayIssues(openIssues, 'open')
-    displayIssues(closedIssues, 'closed')
+    displayIssues(shobIssues, "all");
+    displayIssues(openIssues, "open");
+    displayIssues(closedIssues, "closed");
 
-    showOnly('all')
-
+    showOnly("all");
   } catch (error) {
-    console.error(error)
+    console.error(error);
   } finally {
-    manageSpinner(false)
+    manageSpinner(false);
   }
 }
-let shobIssues = []
-let openIssues = []
-let closedIssues = []
+let shobIssues = [];
+let openIssues = [];
+let closedIssues = [];
 // {
 //     "id": 49,
 //     "title": "Add Google Analytics integration",
@@ -38,27 +37,27 @@ let closedIssues = []
 //     "createdAt": "2024-01-26T10:45:00Z",
 //     "updatedAt": "2024-01-26T10:45:00Z"
 // }
-function pushIssues (arr) {
+function pushIssues(arr) {
   arr.forEach((elem) => {
-    if (elem.status === 'open') {
-      openIssues.push(elem)
+    if (elem.status === "open") {
+      openIssues.push(elem);
     } else {
-      closedIssues.push(elem)
+      closedIssues.push(elem);
     }
-    shobIssues.push(elem)
-  })
+    shobIssues.push(elem);
+  });
 }
-function displayIssues(issues,id) {
-  const all = document.querySelector(`#${id}`)
-  all.innerHTML = ''
+function displayIssues(issues, id) {
+  const all = document.querySelector(`#${id}`);
+  all.innerHTML = "";
   issues.forEach((elm) => {
-    const card = document.createElement('div')
-    card.className = "bg-white w-64 h-64 p-4 space-y-3 rounded-2xl border-t-4"
+    const card = document.createElement("div");
+    card.className = "bg-white w-64 h-64 p-4 space-y-3 rounded-2xl border-t-4";
 
-    if (elm.status === 'open') {
-      card.classList.add('border-t-[#00A86E]')
+    if (elm.status === "open") {
+      card.classList.add("border-t-[#00A86E]");
     } else {
-      card.classList.add('border-t-[#A856F7]')
+      card.classList.add("border-t-[#A856F7]");
     }
 
     card.innerHTML = `
@@ -86,88 +85,81 @@ function displayIssues(issues,id) {
           <div class="flex flex-col gap-2">
             <p class="text-[13px] text-[#64748B]">${elm.author}</p>
             <p class="text-[13px] text-[#64748B]">
-              ${elm.createdAt.slice(0,10)}
+              ${elm.createdAt.slice(0, 10)}
             </p>
           </div>
         </div>
       </div>
-    `
+    `;
 
     // Priority styling
-    const priority = card.querySelector('.priority')
+    const priority = card.querySelector(".priority");
 
-    if (elm.priority === 'high') {
-      priority.classList.add('bg-red-100', 'text-red-500')
-    } 
-    else if (elm.priority === 'medium') {
-      priority.classList.add('bg-yellow-100', 'text-yellow-500')
-    } 
-    else if (elm.priority === 'low') {
-      priority.classList.add('bg-gray-100', 'text-gray-500')
+    if (elm.priority === "high") {
+      priority.classList.add("bg-red-100", "text-red-500");
+    } else if (elm.priority === "medium") {
+      priority.classList.add("bg-yellow-100", "text-yellow-500");
+    } else if (elm.priority === "low") {
+      priority.classList.add("bg-gray-100", "text-gray-500");
     }
 
     // 🔥 Labels handling
-    const labels = card.querySelector('.labels')
+    const labels = card.querySelector(".labels");
 
     elm.labels.forEach((label) => {
-
-      const button = document.createElement('button')
+      const button = document.createElement("button");
 
       button.className =
-        "max-w-28 flex justify-center items-center rounded-xl p-1.5 text-[12px] font-medium"
+        "max-w-28 flex justify-center items-center rounded-xl p-1.5 text-[12px] font-medium";
 
-      if (label === 'bug') {
-        button.classList.add('bg-red-100', 'text-red-500')
+      if (label === "bug") {
+        button.classList.add("bg-red-100", "text-red-500");
         button.innerHTML = `
           <img src="./assets/icon2.png" alt="">
           ${label.toUpperCase()}
-        `
-      }
-
-      else if (label === 'help wanted') {
-        button.classList.add('bg-yellow-100', 'text-yellow-500')
+        `;
+      } else if (label === "help wanted") {
+        button.classList.add("bg-yellow-100", "text-yellow-500");
         button.innerHTML = `
           <img src="./assets/icon1.png" alt="">
           ${label.toUpperCase()}
-        `
-      }
-
-      else if (label === 'enhancement') {
-        button.classList.add('bg-green-100', 'text-green-600')
+        `;
+      } else if (label === "enhancement") {
+        button.classList.add("bg-green-100", "text-green-600");
         button.innerHTML = `
           <img src="./assets/icon3.png" alt="">
           ${label.toUpperCase()}
-        `
+        `;
       } else {
-        button.classList.add('bg-gray-100', 'text-gray-500')
+        button.classList.add("bg-gray-100", "text-gray-500");
         button.innerHTML = `
           <i class="ri-thumb-up-line text-gray-500"></i>
           ${label.toUpperCase()}
-        `
+        `;
       }
 
-      labels.appendChild(button)
-    })
-    all.appendChild(card)
-  })
+      labels.appendChild(button);
+    });
+    all.appendChild(card);
+  });
 }
 const manageSpinner = (status) => {
-  const spinner = document.querySelector('#spinner')
+  const spinner = document.querySelector("#spinner");
 
   if (status) {
-    spinner.classList.remove('hidden')
+    spinner.classList.remove("hidden");
   } else {
-    spinner.classList.add('hidden')
+    spinner.classList.add("hidden");
   }
-}
-allIssues()
-console.log('connect 2');
+};
+allIssues();
+console.log("connect 2");
 // good first issue
 // documentation
 // bug
 // good first issue
 
 function updateIssueCount(count) {
-  const counter = document.querySelector('#issue-count')
-  counter.textContent = `${count} Issues`
+  const counter = document.querySelector("#issue-count");
+  counter.textContent = `${count} Issues`;
 }
